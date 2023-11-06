@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 350px;  /* 设置最大宽度 */
+            width: 100%;  /* 设置宽度为100%，以使容器能够在更小的视图中缩小 */
+            box-sizing: border-box;  /* 确保padding和border包含在元素的总宽度和高度内 */
+    
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .register-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .flash-message {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .flash-message.success {
+            background-color: #e6ffe6;
+            border-color: #80e580;
+            color: #2c992c;
+        }
+
+        .ustc-login-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #1777ec;  /* 蓝色背景 */
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .ustc-login-btn:hover {
+            background-color: #2311e6;  /* 深蓝色背景在悬停时 */
+        }
+
+        input[type="text"], input[type="password"], input[type="submit"], .ustc-login-btn, .register-btn {
+        box-sizing: border-box;  /* 确保padding和border包含在元素的总宽度和高度内 */
+        width: 100%;  /* 设置宽度为100%以填充其容器 */
+        margin: 10px;  /* 移除任何外边距 */
+    }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h2>Login</h2>
+        <form action="/admin/login" method="post">
+            <label>Username:</label>
+            <input type="text" name="username" required>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <input type="hidden" name="redirect" value="{{ redirect }}">
+            <input type="submit" value="Login">
+        </form>
+            <a href="/admin/register?redirect={{ redirect }}" class="register-btn">Go to Register</a>
+            <a href="https://passport.ustc.edu.cn/login?service=https://fpgaol.ustc.edu.cn/uniauth/admin/caslogin?redirect={{ redirect }}" class="ustc-login-btn">科大统一身份认证登录</a>
+           <!--<a href="https://passport.ustc.edu.cn/login?service=https://fpgaol.ustc.edu.cn/uniauth/admin/caslogin" class="ustc-login-btn">科大统一身份认证登录</a>-->
+    </div>
+</body>
+</html>

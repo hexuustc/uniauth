@@ -1,0 +1,14 @@
+[Unit]
+Description=Fpgaol UniAuth Server Service
+After=network.target
+
+[Service]
+Type=simple
+User=fpgaol2
+WorkingDirectory=/home/fpgaol2/uniauth
+Restart=on-failure
+RestartSec=5s
+ExecStart=/usr/bin/python3 /home/fpgaol2/uniauth/uniauth.py
+
+[Install]
+WantedBy=multi-user.target

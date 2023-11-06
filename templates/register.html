@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .login-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <form action="/admin/register" method="post">
+            <label>Username:</label>
+            <input type="text" name="username" required pattern="^[a-zA-Z0-9]+$" title="Username must only contain letters and numbers.">
+            <label>Password:</label>
+            <input type="password" name="password" required pattern="^[a-zA-Z0-9]+$" title="Password must only contain letters and numbers.">
+            <label>Confirm Password:</label>
+            <input type="password" name="confirm_password" required>
+            <input type="hidden" name="redirect" value="{{ redirect }}">
+            <input type="submit" value="Register">
+        </form>
+        <a href="/admin/login?redirect={{ redirect }}" class="login-btn">Go to Login</a>
+    </div>
+</body>
+</html>
